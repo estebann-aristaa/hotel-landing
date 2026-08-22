@@ -72,7 +72,7 @@
 </head>
 <body class="bg-black text-white font-sans overflow-x-hidden selection:bg-gold selection:text-black antialiased">
 
-    <!-- 1. NAVBAR DINÁMICO (Adaptación bidireccional suave) -->
+    <!-- 1. NAVBAR DINÁMICO -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-6 sm:px-8 md:px-14 py-5 sm:py-6 flex items-center justify-between transition-all duration-500 pointer-events-auto">
         
         <!-- Logo -->
@@ -151,7 +151,7 @@
         </div>
     </section>
 
-    <!-- 3. SECCIÓN EDITORIAL: "MORE THAN FOUR WALLS" (IMAGEN MÁS COMPACTA Y EDITORIAL) -->
+    <!-- 3. SECCIÓN EDITORIAL: "MORE THAN FOUR WALLS" -->
     <section id="editorial-section" class="relative z-20 bg-cream pt-24 sm:pt-32 md:pt-36 pb-12 sm:pb-16 px-6 md:px-14 flex flex-col items-center justify-center">
         
         <div class="max-w-3xl mx-auto text-center">
@@ -165,7 +165,7 @@
             </p>
         </div>
 
-        <!-- Fotografía Editorial Más Pequeña y Proporcional -->
+        <!-- Fotografía Editorial -->
         <div class="w-full max-w-4xl mx-auto mt-10 sm:mt-14 overflow-hidden rounded-xl md:rounded-2xl shadow-xl shadow-forest/10">
             <picture>
                 <source media="(max-width: 767px)" srcset="./frames/editorial_mobile.jpg">
@@ -200,11 +200,11 @@
         </div>
     </section>
 
-    <!-- 5. CARRUSEL HORIZONTAL PINNED (TAMAÑO EQUILIBRADO & SCROLL 100% FLUIDO) -->
-    <section id="horizontal-section" class="relative z-30 bg-forest-dark h-screen w-full overflow-hidden flex items-center">
+    <!-- 5. CARRUSEL HORIZONTAL PINNED (FLUIDO, SIN TIRONES, MARGEN VERDE COMPACTA) -->
+    <section id="horizontal-section" class="relative z-30 bg-forest-dark h-[82vh] sm:h-[86vh] w-full overflow-hidden flex items-center justify-center">
         
-        <!-- Pista de imágenes más compacta (~52vh) para dejar respirar el centro -->
-        <div id="gallery-track" class="flex items-center gap-4 sm:gap-6 h-[48vh] sm:h-[54vh] w-max px-6 sm:px-12 will-change-transform">
+        <!-- Pista de imágenes compacta y estilizada -->
+        <div id="gallery-track" class="flex items-center gap-4 sm:gap-6 h-[44vh] sm:h-[48vh] w-max px-6 sm:px-12 will-change-transform">
             
             <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_1.jpg" alt="Aurelia Interior 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
@@ -361,18 +361,18 @@
 
     </section>
 
-    <!-- 7. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS (SIN CONFLICTOS) -->
+    <!-- 7. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 
     <script>
-        // 1. LENIS SMOOTH SCROLL
+        // 1. LENIS SMOOTH SCROLL (Configuración balanceada de ultra lujo)
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.1,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smoothWheel: true,
-            wheelMultiplier: 0.95
+            wheelMultiplier: 0.9
         });
 
         function raf(time) {
@@ -455,8 +455,7 @@
                 trigger: "#hero-section",
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 0.8,
-                anticipatePin: 1
+                scrub: 0.5,
             }
         });
 
@@ -500,25 +499,29 @@
             }
         });
 
-        // 5. CARRUSEL HORIZONTAL: UNIFICADO EN UN SOLO SCROLLTRIGGER ROBUSTO
+        // 5. CARRUSEL HORIZONTAL: SIN TIRONES, INERCIA FLUIDA DIRECTA
         const track = document.getElementById("gallery-track");
 
         function getDistance() {
             return track.scrollWidth - window.innerWidth;
         }
 
-        gsap.to(track, {
-            x: () => -getDistance(),
-            ease: "none",
+        // Timeline de desplazamiento continuo sin frenazos artificiales
+        const horizontalTimeline = gsap.timeline({
             scrollTrigger: {
                 trigger: "#horizontal-section",
                 start: "top top",
-                end: () => `+=${getDistance() + window.innerHeight * 0.3}`,
+                end: () => `+=${getDistance()}`,
                 pin: true,
-                scrub: 1,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
+                pinSpacing: true,
+                scrub: 0.4,
+                invalidateOnRefresh: true
             }
+        });
+
+        horizontalTimeline.to(track, {
+            x: () => -getDistance(),
+            ease: "none"
         });
 
         // Sincronizar dimensiones al terminar la carga de imágenes
