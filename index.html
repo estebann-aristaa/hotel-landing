@@ -513,13 +513,13 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- 8. NUEVA SECCIÓN PINNED SCROLL: "CRAFTED | A HOME BUILT..."                 -->
+    <!-- 8. SECCIÓN PINNED SCROLL: "CRAFTED | 3 PASOS EDITORIALES"                  -->
     <!-- ========================================================================= -->
-    <section id="crafted-section" class="relative w-full h-[280vh] bg-black">
+    <section id="crafted-section" class="relative w-full h-[380vh] bg-black">
         
         <div id="crafted-pin" class="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
             
-            <!-- Imagen de Fondo Cinemática 16:9 con Zoom Sutil -->
+            <!-- Imagen de Fondo Cinemática 16:9 con Zoom Continuo -->
             <img id="crafted-bg-img" src="./frames/crafted_bg.jpg" alt="Aurelia Crafted Interior" class="absolute inset-0 w-full h-full object-cover object-center will-change-transform">
             
             <!-- Velo Oscuro de Ultra Lujo y Viñeta -->
@@ -533,7 +533,7 @@
                 </h2>
             </div>
 
-            <!-- Paso 2: Palabra de Acento "Crafted" + Párrafo Manifiesto -->
+            <!-- Paso 2: Palabra de Acento "Crafted" + Párrafo de Calidad -->
             <div id="crafted-step-2" class="absolute inset-0 flex flex-col items-center justify-center px-6 sm:px-12 md:px-16 text-center z-10 opacity-0 pointer-events-none">
                 <div class="max-w-4xl mx-auto space-y-6 md:space-y-8 flex flex-col items-center">
                     
@@ -542,9 +542,25 @@
                         Crafted
                     </span>
                     
-                    <!-- Párrafo de Calidad Aurelia -->
+                    <!-- Párrafo Manifiesto 1 -->
                     <p class="font-sans font-light text-base sm:text-xl md:text-2xl text-cream/90 leading-relaxed max-w-3xl drop-shadow-md">
                         With luxury finishes, smartly planned layouts, premium materials — every Aurelia residence is designed to the finest detail, where quality is not a feature, it is the foundation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Paso 3 (NUEVO COMBO): "Timeless" + Manifiesto de Herencia -->
+            <div id="crafted-step-3" class="absolute inset-0 flex flex-col items-center justify-center px-6 sm:px-12 md:px-16 text-center z-10 opacity-0 pointer-events-none">
+                <div class="max-w-4xl mx-auto space-y-6 md:space-y-8 flex flex-col items-center">
+                    
+                    <!-- Script / Serif Embellished "Timeless" en Dorado -->
+                    <span class="font-serif italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-gold font-normal tracking-wide drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+                        Timeless
+                    </span>
+                    
+                    <!-- Párrafo Manifiesto 2 -->
+                    <p class="font-sans font-light text-base sm:text-xl md:text-2xl text-cream/90 leading-relaxed max-w-3xl drop-shadow-md">
+                        Designed for generations, curated for the discerning few — where modernist architectural harmony meets the art of enduring, unhurried luxury.
                     </p>
                 </div>
             </div>
@@ -869,7 +885,7 @@
             setResidence(activeResidenceIdx + 1);
         });
 
-        // 7. ANIMACIÓN PINNED SCROLL: SECCIÓN "CRAFTED"
+        // 7. ANIMACIÓN PINNED SCROLL: SECCIÓN "CRAFTED" (3 PASOS SECUENCIALES)
         const tlCrafted = gsap.timeline({
             scrollTrigger: {
                 trigger: "#crafted-section",
@@ -879,26 +895,41 @@
             }
         });
 
-        // Zoom cinematográfico sutil a la imagen de fondo
+        // Zoom cinematográfico progresivo a la imagen
         tlCrafted.fromTo("#crafted-bg-img", 
             { scale: 1 }, 
-            { scale: 1.1, ease: "none", duration: 1 }, 
+            { scale: 1.15, ease: "none", duration: 1 }, 
             0
         );
 
-        // Transición de salida del Titular 1 ("A Home Built...")
+        // Paso 1 ("A Home Built...") sale hacia arriba
         tlCrafted.to("#crafted-step-1", {
             opacity: 0,
             y: -35,
-            duration: 0.3,
+            duration: 0.2,
             ease: "power1.out"
-        }, 0.25);
+        }, 0.2);
 
-        // Transición de entrada del Texto 2 ("Crafted" + párrafo)
+        // Paso 2 ("Crafted") entra suave
         tlCrafted.fromTo("#crafted-step-2", 
             { opacity: 0, y: 35 }, 
-            { opacity: 1, y: 0, duration: 0.35, ease: "power1.out" }, 
-            0.45
+            { opacity: 1, y: 0, duration: 0.2, ease: "power1.out" }, 
+            0.32
+        );
+
+        // Paso 2 ("Crafted") sale hacia arriba
+        tlCrafted.to("#crafted-step-2", {
+            opacity: 0,
+            y: -35,
+            duration: 0.2,
+            ease: "power1.in"
+        }, 0.58);
+
+        // Paso 3 ("Timeless") entra y permanece hasta el final del pin
+        tlCrafted.fromTo("#crafted-step-3", 
+            { opacity: 0, y: 35 }, 
+            { opacity: 1, y: 0, duration: 0.22, ease: "power1.out" }, 
+            0.7
         );
 
         // Sincronización completa al cargar la ventana
