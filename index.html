@@ -11,7 +11,7 @@
     <!-- Google Fonts: Playfair Display + Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Configuración Custom -->
     <script>
@@ -28,8 +28,16 @@
                             light: '#F3C568',
                             dark: '#BD851D',
                         },
-                        cream: '#F4EFE6',
-                        forest: '#0F3B2C',
+                        cream: {
+                            DEFAULT: '#F4EFE6',
+                            light: '#FAF7F2',
+                            dark: '#E8E1D5',
+                        },
+                        forest: {
+                            DEFAULT: '#0F3B2C',
+                            dark: '#08231A',
+                            deep: '#051812',
+                        }
                     }
                 }
             }
@@ -41,118 +49,233 @@
             width: 0px;
             background: transparent;
         }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
-<body class="bg-black text-white font-sans overflow-x-hidden selection:bg-gold selection:text-black">
+<body class="bg-black text-white font-sans overflow-x-hidden selection:bg-gold selection:text-black antialiased">
 
-    <!-- 1. NAVBAR DINÁMICO (Se adapta al scroll) -->
-    <header id="main-header" class="fixed top-0 left-0 w-full z-40 px-8 md:px-14 py-6 flex items-center justify-between transition-colors duration-500 pointer-events-auto">
+    <!-- 1. NAVBAR DINÁMICO -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-6 sm:px-8 md:px-14 py-5 sm:py-6 flex items-center justify-between transition-all duration-500 pointer-events-auto">
         
         <!-- Logo -->
         <a href="#" class="flex items-center gap-3 group">
-            <svg class="w-7 h-7 text-gold fill-current group-hover:scale-105 transition-transform duration-300" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 text-gold fill-current group-hover:scale-105 transition-transform duration-300" viewBox="0 0 24 24">
                 <path d="M12 2L2 20h20L12 2zm0 4.2L17.8 17.5H6.2L12 6.2z"/>
                 <path d="M12 9.2L8.5 15.5h7L12 9.2z"/>
             </svg>
-            <span class="text-lg md:text-xl tracking-[0.25em] text-gold uppercase font-semibold">AURELIA</span>
+            <span class="text-base sm:text-lg md:text-xl tracking-[0.25em] text-gold uppercase font-semibold">AURELIA</span>
         </a>
 
         <!-- Menú Desktop -->
-        <nav class="hidden xl:flex items-center gap-9 text-[13px] tracking-[0.05em] text-white font-medium">
+        <nav class="hidden xl:flex items-center gap-9 text-[13px] tracking-[0.08em] text-white font-medium uppercase">
             <a href="#" class="hover:text-gold transition-colors duration-300">Home</a>
-            <a href="#" class="hover:text-gold transition-colors duration-300">Corporate ▾</a>
-            <a href="#" class="hover:text-gold transition-colors duration-300">Projects ▾</a>
-            <a href="#" class="hover:text-gold transition-colors duration-300">Upcoming Projects ▾</a>
-            <a href="#" class="hover:text-gold transition-colors duration-300">Careers</a>
-            <a href="#" class="hover:text-gold transition-colors duration-300">Media ▾</a>
-            <a href="#" class="hover:text-gold transition-colors duration-300">Contact</a>
+            <a href="#editorial-section" class="hover:text-gold transition-colors duration-300">Philosophy</a>
+            <a href="#showcase-section" class="hover:text-gold transition-colors duration-300">Residences</a>
+            <a href="#amenities-section" class="hover:text-gold transition-colors duration-300">Amenities</a>
+            <a href="#contact-section" class="hover:text-gold transition-colors duration-300">Contact</a>
         </nav>
 
         <!-- Botón Outline Ovalado -->
-        <a href="#inquire" class="px-7 py-2.5 rounded-full border border-white/50 text-white hover:border-gold hover:bg-gold hover:text-black transition-all duration-300 text-[11px] tracking-[0.18em] font-semibold uppercase backdrop-blur-sm">
+        <a href="#contact-section" class="px-5 sm:px-7 py-2 sm:py-2.5 rounded-full border border-white/50 text-white hover:border-gold hover:bg-gold hover:text-black transition-all duration-300 text-[10px] sm:text-[11px] tracking-[0.18em] font-semibold uppercase backdrop-blur-sm">
             Enquire Now
         </a>
     </header>
 
-    <!-- 2. HERO INTERACTIVO CON CANVAS (130 FRAMES) -->
-    <section id="hero-section" class="relative w-full h-[400vh] bg-black">
+    <!-- 2. HERO INTERACTIVO (CANVAS EN PC / FOTOS CROSSFADE EN CELULAR) -->
+    <section id="hero-section" class="relative w-full h-[350vh] sm:h-[400vh] bg-black">
         
         <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
             
-            <!-- Canvas -->
-            <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
+            <!-- A. CANVAS DESKTOP (Solo visible en md: para ahorrar datos en celular) -->
+            <canvas id="hero-canvas" class="hidden md:block absolute inset-0 w-full h-full object-cover z-0"></canvas>
 
-            <!-- Velo sutil inferior para contraste -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none"></div>
+            <!-- B. EXPERIENCIA CELULAR: 3 Imágenes Smooth Crossfade (Solo visible < md) -->
+            <div id="mobile-hero-wrapper" class="block md:hidden absolute inset-0 w-full h-full z-0 overflow-hidden">
+                <img id="mob-img-1" src="./frames/mobile_1.jpg" alt="Aurelia Exterior" class="absolute inset-0 w-full h-full object-cover object-center opacity-100 transition-opacity duration-700">
+                <img id="mob-img-2" src="./frames/mobile_2.jpg" alt="Aurelia Sunken Lounge" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700">
+                <img id="mob-img-3" src="./frames/mobile_3.jpg" alt="Aurelia Master Terrace" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700">
+            </div>
 
-            <!-- CONTENEDOR DE TITULARES -->
-            <div class="relative z-10 w-full h-full px-8 md:px-14 flex flex-col justify-end pb-16 md:pb-20">
+            <!-- Velo de Contraste Cinematográfico -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none z-10"></div>
+
+            <!-- CONTENEDOR DE TITULARES SINCRONIZADOS -->
+            <div class="relative z-20 w-full h-full px-6 sm:px-10 md:px-14 flex flex-col justify-end pb-16 sm:pb-20">
                 
                 <!-- Titular 1 -->
-                <div id="text-1" class="max-w-2xl">
-                    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
+                <div id="text-1" class="max-w-3xl">
+                    <span class="text-gold text-[10px] sm:text-xs tracking-[0.3em] uppercase font-semibold block mb-3">Sanctuary of Serenity</span>
+                    <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[1.05] text-white tracking-tight drop-shadow-md">
                         Crafting Spaces That Feel Like Home
                     </h1>
                 </div>
 
                 <!-- Titular 2 -->
-                <div id="text-2" class="max-w-2xl absolute bottom-16 md:bottom-20 left-8 md:left-14 opacity-0 pointer-events-none">
-                    <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
+                <div id="text-2" class="max-w-3xl absolute bottom-16 sm:bottom-20 left-6 sm:left-10 md:left-14 opacity-0 pointer-events-none">
+                    <span class="text-gold text-[10px] sm:text-xs tracking-[0.3em] uppercase font-semibold block mb-3">Architectural Precision</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[1.05] text-white tracking-tight drop-shadow-md">
                         Designed With Quality That Lasts
                     </h2>
                 </div>
 
                 <!-- Titular 3 -->
-                <div id="text-3" class="max-w-2xl absolute bottom-16 md:bottom-20 left-8 md:left-14 opacity-0 pointer-events-none">
-                    <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
+                <div id="text-3" class="max-w-3xl absolute bottom-16 sm:bottom-20 left-6 sm:left-10 md:left-14 opacity-0 pointer-events-none">
+                    <span class="text-gold text-[10px] sm:text-xs tracking-[0.3em] uppercase font-semibold block mb-3">Timeless Legacy</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[1.05] text-white tracking-tight drop-shadow-md">
                         Creating Value For Years To Come
                     </h2>
                 </div>
 
             </div>
 
-            <!-- Indicador inferior de Scroll -->
-            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 pointer-events-none">
-                <span class="text-[9px] tracking-[0.3em] uppercase text-white/70 font-light">Scroll</span>
-                <div class="w-[1px] h-5 bg-white/40"></div>
+            <!-- Indicador de Scroll -->
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 pointer-events-none">
+                <span class="text-[9px] tracking-[0.35em] uppercase text-white/60 font-light">Scroll</span>
+                <div class="w-[1px] h-4 bg-white/30 animate-pulse"></div>
             </div>
 
         </div>
     </section>
 
-    <!-- 3. SECCIÓN EDITORIAL: "MORE THAN FOUR WALLS" (CLONADA EXACTA) -->
-    <section id="editorial-section" class="relative z-20 bg-cream py-32 md:py-44 px-6 md:px-14 flex items-center justify-center">
-        
+    <!-- 3. SECCIÓN EDITORIAL: "MORE THAN FOUR WALLS" -->
+    <section id="editorial-section" class="relative z-20 bg-cream py-24 sm:py-32 md:py-44 px-6 md:px-14 flex items-center justify-center">
         <div class="max-w-4xl mx-auto text-center">
             
-            <!-- Titular Grande Editorial en Verde Bosque Profundo -->
-            <h2 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-normal leading-[1.08] text-forest tracking-tight">
-                More Than <br>
+            <span class="inline-block text-[11px] tracking-[0.3em] uppercase text-forest/70 font-semibold mb-4 sm:mb-6">The Philosophy</span>
+            
+            <h2 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-normal leading-[1.05] text-forest tracking-tight">
+                More Than <br class="hidden sm:inline">
                 Four Walls
             </h2>
 
-            <!-- Párrafo Descriptivo Centrado -->
-            <p class="mt-10 md:mt-14 font-sans font-light text-base md:text-lg lg:text-[1.15rem] leading-[1.8] text-[#242A27] max-w-3xl mx-auto">
+            <p class="mt-8 sm:mt-12 font-sans font-light text-base sm:text-lg lg:text-[1.18rem] leading-[1.85] text-[#242A27] max-w-3xl mx-auto">
                 The celebrations, the quiet evenings, the moments that bring everyone together — life's best moments happen at home. At Aurelia, this is where moments like these find their place. Thoughtfully planned, beautifully finished and built to a standard that makes every day feel a little more special.
             </p>
+
+            <div class="mt-12 flex items-center justify-center gap-2">
+                <div class="w-8 h-[1px] bg-forest/30"></div>
+                <div class="w-2 h-2 rounded-full border border-gold bg-transparent"></div>
+                <div class="w-8 h-[1px] bg-forest/30"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. SECCIÓN SHOWCASE INTERACTIVO: PILARES & GALERÍA DE ESPACIOS (NUEVA FASE) -->
+    <section id="showcase-section" class="relative z-20 bg-forest-deep text-cream py-24 sm:py-32 px-6 md:px-14 border-t border-forest">
+        
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Encabezado de los 3 Pilares -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 pb-16 sm:pb-24 border-b border-white/10">
+                
+                <div class="space-y-3 group">
+                    <span class="text-gold text-xs tracking-[0.25em] font-medium block">01 / ENDURANCE</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal group-hover:text-gold transition-colors duration-300">Homes.<br>Built to Last.</h3>
+                    <p class="text-white/60 text-xs sm:text-sm leading-relaxed font-light">Engineered with supreme structural integrity and long-lasting materials sourced globally.</p>
+                </div>
+
+                <div class="space-y-3 group">
+                    <span class="text-gold text-xs tracking-[0.25em] font-medium block">02 / MASTERY</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal group-hover:text-gold transition-colors duration-300">Design.<br>Led By Excellence.</h3>
+                    <p class="text-white/60 text-xs sm:text-sm leading-relaxed font-light">Every proportion, ceiling height, and light trajectory is shaped for optimal serenity.</p>
+                </div>
+
+                <div class="space-y-3 group">
+                    <span class="text-gold text-xs tracking-[0.25em] font-medium block">03 / PRECISION</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl text-white font-normal group-hover:text-gold transition-colors duration-300">Quality.<br>In Every Detail.</h3>
+                    <p class="text-white/60 text-xs sm:text-sm leading-relaxed font-light">Bespoke Italian joinery, rare natural stones, and subtle architectural bronze trim.</p>
+                </div>
+
+            </div>
+
+            <!-- Selector de Espacios Interactivo -->
+            <div class="pt-16 sm:pt-20">
+                
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+                    <div>
+                        <span class="text-gold text-[10px] sm:text-xs tracking-[0.3em] uppercase font-semibold block mb-2">Curated Environments</span>
+                        <h2 class="font-serif text-3xl sm:text-5xl font-normal text-white">The Signature Suites</h2>
+                    </div>
+
+                    <!-- Pills / Filtros Interactivos -->
+                    <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto hide-scrollbar pb-2">
+                        <button onclick="changeShowcase(0)" class="tab-btn active-tab px-5 py-2 rounded-full border border-gold bg-gold text-black text-[11px] tracking-[0.15em] uppercase font-medium transition-all duration-300 whitespace-nowrap">
+                            Villa Grand Living
+                        </button>
+                        <button onclick="changeShowcase(1)" class="tab-btn px-5 py-2 rounded-full border border-white/20 text-white/80 hover:border-gold hover:text-gold text-[11px] tracking-[0.15em] uppercase font-medium transition-all duration-300 whitespace-nowrap">
+                            Double-Height Lounge
+                        </button>
+                        <button onclick="changeShowcase(2)" class="tab-btn px-5 py-2 rounded-full border border-white/20 text-white/80 hover:border-gold hover:text-gold text-[11px] tracking-[0.15em] uppercase font-medium transition-all duration-300 whitespace-nowrap">
+                            Master Sanctuary
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Principal del Showcase -->
+                <div class="relative w-full rounded-2xl overflow-hidden bg-[#081F17] border border-white/10 grid grid-cols-1 lg:grid-cols-12 min-h-[540px]">
+                    
+                    <!-- Imagen Dinámica con Zoom Suave -->
+                    <div class="lg:col-span-8 relative overflow-hidden h-[340px] lg:h-auto min-h-[340px]">
+                        <img id="showcase-img" src="./frames/mobile_1.jpg" alt="Aurelia Suite" class="w-full h-full object-cover transition-all duration-700 ease-out transform scale-100 hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent lg:hidden"></div>
+                    </div>
+
+                    <!-- Información Lateral de la Suite -->
+                    <div class="lg:col-span-4 p-8 sm:p-12 flex flex-col justify-between bg-[#0B261D]/90 backdrop-blur-sm">
+                        <div class="space-y-6">
+                            <div>
+                                <span id="showcase-tag" class="text-gold text-[10px] tracking-[0.25em] uppercase font-medium">Sector Prime • Waterfront</span>
+                                <h4 id="showcase-title" class="font-serif text-2xl sm:text-3xl text-white mt-1">Villa Grand Living & Pool</h4>
+                            </div>
+
+                            <p id="showcase-desc" class="text-white/70 text-xs sm:text-sm leading-relaxed font-light">
+                                Seamless connection between indoor travertine lounges and the exterior cantilevered infinity deck with panoramic sunset horizons.
+                            </p>
+
+                            <!-- Specs Rápidas -->
+                            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/10 text-xs">
+                                <div>
+                                    <span class="text-white/40 uppercase tracking-widest text-[9px] block">Ceiling Height</span>
+                                    <span id="showcase-spec1" class="text-white font-medium text-sm">4.2 Meters</span>
+                                </div>
+                                <div>
+                                    <span class="text-white/40 uppercase tracking-widest text-[9px] block">Orientation</span>
+                                    <span id="showcase-spec2" class="text-white font-medium text-sm">Waterfront West</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-8">
+                            <a href="#contact-section" class="inline-flex items-center gap-3 text-gold text-xs tracking-[0.2em] uppercase font-semibold group hover:text-white transition-colors duration-300">
+                                <span>Explore Floorplan</span>
+                                <span class="group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
     </section>
 
-    <!-- SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
+    <!-- 5. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS + RESPONSIVE LOGIC -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 
     <script>
-        // -------------------------------------------------------------
-        // CONFIGURACIÓN DE TUS FRAMES
-        // -------------------------------------------------------------
-        const frameCount = 130;
-        const currentFrame = index => `./frames/frame_${String(index).padStart(3, '0')}.jpg`;
-
-        // 1. INICIALIZAR LENIS
+        // 1. INICIALIZAR LENIS (Smooth Scroll)
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -171,66 +294,70 @@
         });
         gsap.ticker.lagSmoothing(0);
 
-        // 2. CANVAS RENDERING
+        // 2. DETECCIÓN RESPONSIVE & CANVAS PC (Solo se descargan los 130 frames en Desktop)
+        const isMobile = window.innerWidth < 768;
+        const frameCount = 130;
+        const currentFrame = index => `./frames/frame_${String(index).padStart(3, '0')}.jpg`;
+
         const canvas = document.getElementById("hero-canvas");
-        const context = canvas.getContext("2d");
-
-        function setCanvasSize() {
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = window.innerWidth * dpr;
-            canvas.height = window.innerHeight * dpr;
-            render();
-        }
-
+        const context = canvas ? canvas.getContext("2d") : null;
         const images = [];
         const villaAnim = { frame: 1 };
 
-        // Primer frame de inmediato
-        const firstImg = new Image();
-        firstImg.src = currentFrame(1);
-        firstImg.onload = () => render();
-
-        // Carga progresiva en RAM
-        for (let i = 1; i <= frameCount; i++) {
-            const img = new Image();
-            img.src = currentFrame(i);
-            images.push(img);
-        }
-
-        function render() {
-            let targetIndex = Math.min(frameCount, Math.max(1, Math.round(villaAnim.frame))) - 1;
-            let img = images[targetIndex];
-
-            if (!img || !img.complete || img.naturalWidth === 0) {
-                for (let k = targetIndex; k >= 0; k--) {
-                    if (images[k] && images[k].complete && images[k].naturalWidth !== 0) {
-                        img = images[k];
-                        break;
-                    }
-                }
+        if (!isMobile && canvas) {
+            function setCanvasSize() {
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = window.innerWidth * dpr;
+                canvas.height = window.innerHeight * dpr;
+                render();
             }
 
-            if (!img || !img.complete || img.naturalWidth === 0) return;
+            const firstImg = new Image();
+            firstImg.src = currentFrame(1);
+            firstImg.onload = () => render();
 
-            const hRatio = canvas.width / img.naturalWidth;
-            const vRatio = canvas.height / img.naturalHeight;
-            const ratio = Math.max(hRatio, vRatio);
+            // Carga progresiva en PC
+            for (let i = 1; i <= frameCount; i++) {
+                const img = new Image();
+                img.src = currentFrame(i);
+                images.push(img);
+            }
 
-            const centerShiftX = (canvas.width - img.naturalWidth * ratio) / 2;
-            const centerShiftY = (canvas.height - img.height * ratio) / 2;
+            function render() {
+                let targetIndex = Math.min(frameCount, Math.max(1, Math.round(villaAnim.frame))) - 1;
+                let img = images[targetIndex];
 
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            context.drawImage(
-                img,
-                0, 0, img.naturalWidth, img.naturalHeight,
-                centerShiftX, centerShiftY, img.width * ratio, img.height * ratio
-            );
+                if (!img || !img.complete || img.naturalWidth === 0) {
+                    for (let k = targetIndex; k >= 0; k--) {
+                        if (images[k] && images[k].complete && images[k].naturalWidth !== 0) {
+                            img = images[k];
+                            break;
+                        }
+                    }
+                }
+
+                if (!img || !img.complete || img.naturalWidth === 0) return;
+
+                const hRatio = canvas.width / img.naturalWidth;
+                const vRatio = canvas.height / img.naturalHeight;
+                const ratio = Math.max(hRatio, vRatio);
+
+                const centerShiftX = (canvas.width - img.naturalWidth * ratio) / 2;
+                const centerShiftY = (canvas.height - img.height * ratio) / 2;
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(
+                    img,
+                    0, 0, img.naturalWidth, img.naturalHeight,
+                    centerShiftX, centerShiftY, img.width * ratio, img.height * ratio
+                );
+            }
+
+            setCanvasSize();
+            window.addEventListener("resize", setCanvasSize);
         }
 
-        // 3. ANIMACIONES GSAP
-        setCanvasSize();
-        window.addEventListener("resize", setCanvasSize);
-
+        // 3. ANIMACIONES GSAP (HERO TIMELINE)
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: "#hero-section",
@@ -240,13 +367,30 @@
             }
         });
 
-        tl.to(villaAnim, {
-            frame: frameCount,
-            snap: "frame",
-            ease: "none",
-            onUpdate: render
-        }, 0);
+        // Frame rendering en Desktop
+        if (!isMobile && canvas) {
+            tl.to(villaAnim, {
+                frame: frameCount,
+                snap: "frame",
+                ease: "none",
+                onUpdate: render
+            }, 0);
+        }
 
+        // Crossfade de las 3 imágenes verticales en Móvil
+        if (isMobile) {
+            const mob1 = document.getElementById("mob-img-1");
+            const mob2 = document.getElementById("mob-img-2");
+            const mob3 = document.getElementById("mob-img-3");
+
+            tl.to(mob1, { opacity: 0, ease: "power1.inOut", duration: 0.2 }, 0.25);
+            tl.to(mob2, { opacity: 1, ease: "power1.inOut", duration: 0.2 }, 0.25);
+
+            tl.to(mob2, { opacity: 0, ease: "power1.inOut", duration: 0.2 }, 0.65);
+            tl.to(mob3, { opacity: 1, ease: "power1.inOut", duration: 0.2 }, 0.65);
+        }
+
+        // Transición de los 3 Titulares
         tl.to("#text-1", {
             opacity: 0,
             y: -25,
@@ -270,17 +414,78 @@
             { opacity: 1, y: 0, duration: 0.12, ease: "power1.out" }, 
         0.78);
 
-        // Transición del Header al entrar a la sección Crema
+        // 4. CAMBIO DE COLOR DEL NAVBAR AL SCROLLEAR
         ScrollTrigger.create({
             trigger: "#editorial-section",
             start: "top 80px",
             onEnter: () => {
-                document.getElementById("main-header").classList.add("bg-[#0E231B]/95", "backdrop-blur-md", "shadow-lg");
+                document.getElementById("main-header").classList.add("bg-[#071F17]/95", "backdrop-blur-md", "shadow-xl", "py-4");
+                document.getElementById("main-header").classList.remove("py-5", "sm:py-6");
             },
             onLeaveBack: () => {
-                document.getElementById("main-header").classList.remove("bg-[#0E231B]/95", "backdrop-blur-md", "shadow-lg");
+                document.getElementById("main-header").classList.remove("bg-[#071F17]/95", "backdrop-blur-md", "shadow-xl", "py-4");
+                document.getElementById("main-header").classList.add("py-5", "sm:py-6");
             }
         });
+
+        // 5. INTERACTIVIDAD DEL SHOWCASE DE SUITES
+        const suitesData = [
+            {
+                tag: "Sector Prime • Waterfront",
+                title: "Villa Grand Living & Pool",
+                desc: "Seamless connection between indoor travertine lounges and the exterior cantilevered infinity deck with panoramic sunset horizons.",
+                spec1: "4.2 Meters",
+                spec2: "Waterfront West",
+                img: "./frames/mobile_1.jpg"
+            },
+            {
+                tag: "Level 02 • Double Height",
+                title: "Grand Atrium & Dining Lounge",
+                desc: "Double-volume ceilings wrapped in fluted walnut panels with custom bronze chandeliers overlooking the sunken water fire-pit.",
+                spec1: "6.8 Meters",
+                spec2: "Private Lagoon",
+                img: "./frames/mobile_2.jpg"
+            },
+            {
+                tag: "Penthouse Suite • Master Wing",
+                title: "Cantilevered Sky Terrace",
+                desc: "A secluded master sanctuary featuring seamless floor-to-ceiling glass, Italian walk-in dressing suites, and skyline view bathtubs.",
+                spec1: "Top Floor",
+                spec2: "360° Panoramic",
+                img: "./frames/mobile_3.jpg"
+            }
+        ];
+
+        function changeShowcase(index) {
+            const data = suitesData[index];
+            const imgEl = document.getElementById("showcase-img");
+            
+            // Animación suave de cambio
+            imgEl.style.opacity = "0.3";
+            imgEl.style.transform = "scale(0.98)";
+
+            setTimeout(() => {
+                document.getElementById("showcase-tag").innerText = data.tag;
+                document.getElementById("showcase-title").innerText = data.title;
+                document.getElementById("showcase-desc").innerText = data.desc;
+                document.getElementById("showcase-spec1").innerText = data.spec1;
+                document.getElementById("showcase-spec2").innerText = data.spec2;
+                imgEl.src = data.img;
+
+                imgEl.style.opacity = "1";
+                imgEl.style.transform = "scale(1)";
+            }, 250);
+
+            // Actualizar botones de tab
+            const buttons = document.querySelectorAll(".tab-btn");
+            buttons.forEach((btn, i) => {
+                if (i === index) {
+                    btn.className = "tab-btn active-tab px-5 py-2 rounded-full border border-gold bg-gold text-black text-[11px] tracking-[0.15em] uppercase font-medium transition-all duration-300 whitespace-nowrap";
+                } else {
+                    btn.className = "tab-btn px-5 py-2 rounded-full border border-white/20 text-white/80 hover:border-gold hover:text-gold text-[11px] tracking-[0.15em] uppercase font-medium transition-all duration-300 whitespace-nowrap";
+                }
+            });
+        }
     </script>
 </body>
 </html>
