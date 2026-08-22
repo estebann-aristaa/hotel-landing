@@ -200,10 +200,10 @@
         </div>
     </section>
 
-    <!-- 5. CARRUSEL HORIZONTAL: PARALLAX 100% FLUIDO (SIN PIN / SCROLL CONTINUO SIN PARADAS) -->
+    <!-- 5. CARRUSEL HORIZONTAL: PARALLAX CALMO Y SEDOSO (SIN BLOQUEO, VELOCIDAD SUAVE) -->
     <section id="horizontal-section" class="relative z-30 bg-[#08231A] py-16 sm:py-24 w-full overflow-hidden flex flex-col items-center justify-center">
         
-        <!-- Pista de imágenes en movimiento horizontal continuo -->
+        <!-- Pista de imágenes en movimiento sutil y elegante -->
         <div id="gallery-track" class="flex items-center gap-5 sm:gap-7 h-[42vh] sm:h-[48vh] w-max px-8 sm:px-16 will-change-transform">
             
             <div class="h-full aspect-[4/3] flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
@@ -499,21 +499,22 @@
             }
         });
 
-        // 5. CARRUSEL HORIZONTAL: PARALLAX PURO (CERO PIN, SCROLL VERTICAL 100% LIBRE Y CONTINUO)
+        // 5. CARRUSEL HORIZONTAL: PARALLAX CALMO, SEDOSO Y CONTINUO (SIN PIN)
         const track = document.getElementById("gallery-track");
 
         gsap.fromTo(track, 
             { 
-                x: () => window.innerWidth * 0.18 
+                x: () => window.innerWidth * 0.08 
             }, 
             {
-                x: () => -(track.scrollWidth - window.innerWidth * 0.75),
+                // Desplazamiento pausado y controlado: nunca agota la galería de golpe
+                x: () => -(track.scrollWidth * 0.36),
                 ease: "none",
                 scrollTrigger: {
                     trigger: "#horizontal-section",
                     start: "top bottom",
                     end: "bottom top",
-                    scrub: 0.5,
+                    scrub: 0.7,
                     invalidateOnRefresh: true,
                 }
             }
