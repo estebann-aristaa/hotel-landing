@@ -200,11 +200,11 @@
         </div>
     </section>
 
-    <!-- 5. CARRUSEL HORIZONTAL: MOVIMIENTO ANTICIPADO Y ENTREGA FLUIDA SIN VACÍOS -->
-    <section id="horizontal-section" class="relative z-30 bg-[#08231A] h-screen w-full overflow-hidden flex items-center justify-center">
+    <!-- 5. CARRUSEL HORIZONTAL: PARALLAX 100% FLUIDO (SIN PIN / SCROLL CONTINUO SIN PARADAS) -->
+    <section id="horizontal-section" class="relative z-30 bg-[#08231A] py-16 sm:py-24 w-full overflow-hidden flex flex-col items-center justify-center">
         
-        <!-- Pista de imágenes estilizada -->
-        <div id="gallery-track" class="flex items-center gap-5 sm:gap-7 h-[46vh] sm:h-[50vh] w-max px-8 sm:px-16 will-change-transform">
+        <!-- Pista de imágenes en movimiento horizontal continuo -->
+        <div id="gallery-track" class="flex items-center gap-5 sm:gap-7 h-[42vh] sm:h-[48vh] w-max px-8 sm:px-16 will-change-transform">
             
             <div class="h-full aspect-[4/3] flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_1.jpg" alt="Aurelia Interior 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
@@ -499,45 +499,25 @@
             }
         });
 
-        // 5. CARRUSEL HORIZONTAL: MOVIMIENTO ANTICIPADO Y TRANSICIÓN CONTINUA
+        // 5. CARRUSEL HORIZONTAL: PARALLAX PURO (CERO PIN, SCROLL VERTICAL 100% LIBRE Y CONTINUO)
         const track = document.getElementById("gallery-track");
 
-        // A. Pre-desplazamiento al entrar en pantalla (el carrusel ya se mueve antes de clavarse)
         gsap.fromTo(track, 
-            { x: 160 }, 
+            { 
+                x: () => window.innerWidth * 0.18 
+            }, 
             {
-                x: 0,
+                x: () => -(track.scrollWidth - window.innerWidth * 0.75),
                 ease: "none",
                 scrollTrigger: {
                     trigger: "#horizontal-section",
                     start: "top bottom",
-                    end: "top top",
-                    scrub: 0.3,
+                    end: "bottom top",
+                    scrub: 0.5,
+                    invalidateOnRefresh: true,
                 }
             }
         );
-
-        // B. Recorrido Pinned Exacto: se desliza y entrega a Holiday Homes sin zonas muertas
-        function calculateGlide() {
-            const trackWidth = track.scrollWidth;
-            const viewportWidth = window.innerWidth;
-            // Distancia calibrada: deja las últimas tarjetas visibles y pasa a la siguiente sección
-            return Math.max(0, trackWidth - (viewportWidth * 0.82));
-        }
-
-        gsap.to(track, {
-            x: () => -calculateGlide(),
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#horizontal-section",
-                start: "top top",
-                end: () => `+=${window.innerHeight * 1.2}`, // Duración justa y dinámica
-                pin: true,
-                pinSpacing: true,
-                scrub: 0.3,
-                invalidateOnRefresh: true,
-            }
-        });
 
         // Sincronización al terminar la carga de imágenes
         window.addEventListener("load", () => {
