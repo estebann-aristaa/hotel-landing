@@ -91,7 +91,7 @@
             <a href="#horizontal-section" class="hover:text-gold transition-colors duration-300">Projects ▾</a>
             <a href="#holiday-homes" class="hover:text-gold transition-colors duration-300">Retreats ▾</a>
             <a href="#residences-section" class="hover:text-gold transition-colors duration-300">Residences ▾</a>
-            <a href="#" class="hover:text-gold transition-colors duration-300">Careers</a>
+            <a href="#crafted-section" class="hover:text-gold transition-colors duration-300">Philosophy</a>
             <a href="#holiday-homes" class="hover:text-gold transition-colors duration-300">Contact</a>
         </nav>
 
@@ -361,9 +361,7 @@
 
     </section>
 
-    <!-- ========================================================================= -->
-    <!-- 7. SECCIÓN THE RESIDENCES / FIND YOUR DREAM HOME                          -->
-    <!-- ========================================================================= -->
+    <!-- 7. SECCIÓN THE RESIDENCES / FIND YOUR DREAM HOME -->
     <section id="residences-section" class="relative z-30 bg-cream text-forest py-24 sm:py-32 px-6 md:px-14 border-t border-forest/15">
         <div class="max-w-7xl mx-auto">
             
@@ -480,7 +478,7 @@
 
             </div>
 
-            <!-- Tira Inferior de 4/5 Pestañas Seleccionables -->
+            <!-- Tira Inferior de 4 Pestañas Seleccionables -->
             <div class="mt-14 pt-8 border-t border-forest/15">
                 <div id="residences-tabs" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                     
@@ -514,7 +512,81 @@
         </div>
     </section>
 
-    <!-- 8. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
+    <!-- ========================================================================= -->
+    <!-- 8. NUEVA SECCIÓN PINNED SCROLL: "CRAFTED | A HOME BUILT..."                 -->
+    <!-- ========================================================================= -->
+    <section id="crafted-section" class="relative w-full h-[280vh] bg-black">
+        
+        <div id="crafted-pin" class="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
+            
+            <!-- Imagen de Fondo Cinemática 16:9 con Zoom Sutil -->
+            <img id="crafted-bg-img" src="./frames/crafted_bg.jpg" alt="Aurelia Crafted Interior" class="absolute inset-0 w-full h-full object-cover object-center will-change-transform">
+            
+            <!-- Velo Oscuro de Ultra Lujo y Viñeta -->
+            <div class="absolute inset-0 bg-black/60 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80 pointer-events-none"></div>
+
+            <!-- Paso 1: Titular Inicial "A Home Built..." -->
+            <div id="crafted-step-1" class="absolute inset-0 flex items-center justify-center px-6 sm:px-12 md:px-16 text-center z-10">
+                <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-normal leading-[1.12] text-white max-w-5xl tracking-tight drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)]">
+                    A Home Built the Way You Always Imagined
+                </h2>
+            </div>
+
+            <!-- Paso 2: Palabra de Acento "Crafted" + Párrafo Manifiesto -->
+            <div id="crafted-step-2" class="absolute inset-0 flex flex-col items-center justify-center px-6 sm:px-12 md:px-16 text-center z-10 opacity-0 pointer-events-none">
+                <div class="max-w-4xl mx-auto space-y-6 md:space-y-8 flex flex-col items-center">
+                    
+                    <!-- Script / Serif Embellished "Crafted" en Dorado -->
+                    <span class="font-serif italic text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-gold font-normal tracking-wide drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+                        Crafted
+                    </span>
+                    
+                    <!-- Párrafo de Calidad Aurelia -->
+                    <p class="font-sans font-light text-base sm:text-xl md:text-2xl text-cream/90 leading-relaxed max-w-3xl drop-shadow-md">
+                        With luxury finishes, smartly planned layouts, premium materials — every Aurelia residence is designed to the finest detail, where quality is not a feature, it is the foundation.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- 9. FOOTER EDITORIAL LUXURY -->
+    <footer class="relative z-30 bg-[#041610] text-cream py-20 px-6 md:px-14 border-t border-gold/20">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+            <div>
+                <span class="font-serif tracking-[0.25em] text-2xl font-semibold uppercase text-gold">AURELIA</span>
+                <p class="text-xs tracking-[0.3em] uppercase text-cream/60 mt-1">Luxury Residences</p>
+                <p class="text-xs text-cream/40 mt-4 max-w-sm">
+                    Crafting architectural excellence and generational heritage.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-8 sm:gap-14 text-xs tracking-widest uppercase font-light text-cream/70">
+                <div class="space-y-3 flex flex-col">
+                    <span class="text-gold font-semibold mb-1">Architecture</span>
+                    <a href="#hero-section" class="hover:text-gold transition-colors">Overview</a>
+                    <a href="#editorial-section" class="hover:text-gold transition-colors">Philosophy</a>
+                    <a href="#horizontal-section" class="hover:text-gold transition-colors">Portfolio</a>
+                </div>
+                <div class="space-y-3 flex flex-col">
+                    <span class="text-gold font-semibold mb-1">Inquiries</span>
+                    <a href="#residences-section" class="hover:text-gold transition-colors">Residences</a>
+                    <a href="#holiday-homes" class="hover:text-gold transition-colors">Retreats</a>
+                    <a href="#inquire" class="hover:text-gold transition-colors">Private Viewing</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-cream/10 flex flex-col sm:flex-row justify-between items-center text-[10px] tracking-widest text-cream/40 uppercase gap-4">
+            <p>&copy; 2026 AURELIA Luxury Residences. All Rights Reserved.</p>
+            <p>Inspired by Emarat Realty Architecture</p>
+        </div>
+    </footer>
+
+    <!-- 10. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
@@ -684,9 +756,7 @@
             }
         );
 
-        // =========================================================================
         // 6. LÓGICA INTERACTIVA: SECCIÓN "THE RESIDENCES"
-        // =========================================================================
         const residencesData = [
             {
                 title: "C2 at DLF Garden City",
@@ -747,7 +817,6 @@
             activeResidenceIdx = index;
             const item = residencesData[activeResidenceIdx];
 
-            // Transición suave de salida y entrada con GSAP
             gsap.to([resImgEl, resTitleEl, resLocEl, resBuiltEl, resSpec1, resSpec2, resSpec3, resSpec4], {
                 opacity: 0,
                 y: 6,
@@ -773,7 +842,6 @@
                 }
             });
 
-            // Actualizar estilo visual de las pestañas
             tabButtons.forEach((btn, i) => {
                 const subP = btn.querySelector("p");
                 if (i === activeResidenceIdx) {
@@ -800,6 +868,38 @@
         document.getElementById("btn-next-residence").addEventListener("click", () => {
             setResidence(activeResidenceIdx + 1);
         });
+
+        // 7. ANIMACIÓN PINNED SCROLL: SECCIÓN "CRAFTED"
+        const tlCrafted = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#crafted-section",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.8,
+            }
+        });
+
+        // Zoom cinematográfico sutil a la imagen de fondo
+        tlCrafted.fromTo("#crafted-bg-img", 
+            { scale: 1 }, 
+            { scale: 1.1, ease: "none", duration: 1 }, 
+            0
+        );
+
+        // Transición de salida del Titular 1 ("A Home Built...")
+        tlCrafted.to("#crafted-step-1", {
+            opacity: 0,
+            y: -35,
+            duration: 0.3,
+            ease: "power1.out"
+        }, 0.25);
+
+        // Transición de entrada del Texto 2 ("Crafted" + párrafo)
+        tlCrafted.fromTo("#crafted-step-2", 
+            { opacity: 0, y: 35 }, 
+            { opacity: 1, y: 0, duration: 0.35, ease: "power1.out" }, 
+            0.45
+        );
 
         // Sincronización completa al cargar la ventana
         window.addEventListener("load", () => {
