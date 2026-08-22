@@ -367,6 +367,16 @@
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 
     <script>
+        // 0. RESET DE SCROLL OBLIGATORIO AL REINICIAR (ARRANCA SIEMPRE DESDE 0)
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        window.addEventListener('beforeunload', () => {
+            window.scrollTo(0, 0);
+        });
+
         // 1. LENIS SMOOTH SCROLL
         const lenis = new Lenis({
             duration: 1.15,
@@ -374,6 +384,8 @@
             smoothWheel: true,
             wheelMultiplier: 0.95
         });
+
+        lenis.scrollTo(0, { immediate: true });
 
         function raf(time) {
             lenis.raf(time);
@@ -507,7 +519,6 @@
                 x: () => window.innerWidth * 0.08 
             }, 
             {
-                // Desplazamiento pausado y controlado: nunca agota la galería de golpe
                 x: () => -(track.scrollWidth * 0.36),
                 ease: "none",
                 scrollTrigger: {
@@ -520,8 +531,10 @@
             }
         );
 
-        // Sincronización al terminar la carga de imágenes
+        // Sincronización completa al cargar la ventana
         window.addEventListener("load", () => {
+            window.scrollTo(0, 0);
+            lenis.scrollTo(0, { immediate: true });
             ScrollTrigger.refresh();
         });
     </script>
