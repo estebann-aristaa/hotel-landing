@@ -56,23 +56,23 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Efecto Liquid Glass Real */
+        /* Efecto Liquid Glass Refinado */
         .liquid-glass {
-            background: radial-gradient(120% 120% at 50% 10%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(226, 168, 56, 0.4);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            background: radial-gradient(120% 120% at 50% 10%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.03) 100%);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(226, 168, 56, 0.45);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.35);
         }
         .liquid-glass:hover {
-            border-color: rgba(226, 168, 56, 0.9);
-            box-shadow: 0 25px 60px rgba(226, 168, 56, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+            border-color: rgba(226, 168, 56, 0.95);
+            box-shadow: 0 25px 60px rgba(226, 168, 56, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
 <body class="bg-black text-white font-sans overflow-x-hidden selection:bg-gold selection:text-black antialiased">
 
-    <!-- 1. NAVBAR DINÁMICO (Se adapta al scroll) -->
+    <!-- 1. NAVBAR DINÁMICO (Adaptación bidireccional suave) -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-6 sm:px-8 md:px-14 py-5 sm:py-6 flex items-center justify-between transition-all duration-500 pointer-events-auto">
         
         <!-- Logo -->
@@ -101,42 +101,39 @@
         </a>
     </header>
 
-    <!-- 2. HERO INTERACTIVO CON CANVAS / RESPONSIVE FALLBACK -->
+    <!-- 2. HERO INTERACTIVO CON CANVAS (DESKTOP) / CROSSFADE (MÓVIL) -->
     <section id="hero-section" class="relative w-full h-[350vh] sm:h-[400vh] bg-black">
         
         <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
             
-            <!-- A. CANVAS DESKTOP -->
+            <!-- Canvas Desktop -->
             <canvas id="hero-canvas" class="hidden md:block absolute inset-0 w-full h-full object-cover z-0"></canvas>
 
-            <!-- B. EXPERIENCIA CELULAR: 3 Imágenes Smooth Crossfade -->
+            <!-- Móvil: 3 Fotos con Crossfade -->
             <div id="mobile-hero-wrapper" class="block md:hidden absolute inset-0 w-full h-full z-0 overflow-hidden">
-                <img id="mob-img-1" src="./frames/mobile_1.jpg" alt="Aurelia Exterior" class="absolute inset-0 w-full h-full object-cover object-center opacity-100 transition-opacity duration-700">
-                <img id="mob-img-2" src="./frames/mobile_2.jpg" alt="Aurelia Sunken Lounge" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700">
-                <img id="mob-img-3" src="./frames/mobile_3.jpg" alt="Aurelia Master Terrace" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-700">
+                <img id="mob-img-1" src="./frames/mobile_1.jpg" alt="Aurelia Exterior" class="absolute inset-0 w-full h-full object-cover object-center opacity-100 transition-opacity duration-500">
+                <img id="mob-img-2" src="./frames/mobile_2.jpg" alt="Aurelia Sunken Lounge" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-500">
+                <img id="mob-img-3" src="./frames/mobile_3.jpg" alt="Aurelia Master Terrace" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-500">
             </div>
 
             <!-- Velo sutil inferior para contraste -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none z-10"></div>
 
-            <!-- CONTENEDOR DE TITULARES -->
+            <!-- Titulares Sincronizados -->
             <div class="relative z-20 w-full h-full px-6 sm:px-10 md:px-14 flex flex-col justify-end pb-16 sm:pb-20">
                 
-                <!-- Titular 1 -->
                 <div id="text-1" class="max-w-2xl">
                     <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
                         Crafting Spaces That Feel Like Home
                     </h1>
                 </div>
 
-                <!-- Titular 2 -->
                 <div id="text-2" class="max-w-2xl absolute bottom-16 sm:bottom-20 left-6 sm:left-10 md:left-14 opacity-0 pointer-events-none">
                     <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
                         Designed With Quality That Lasts
                     </h2>
                 </div>
 
-                <!-- Titular 3 -->
                 <div id="text-3" class="max-w-2xl absolute bottom-16 sm:bottom-20 left-6 sm:left-10 md:left-14 opacity-0 pointer-events-none">
                     <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
                         Creating Value For Years To Come
@@ -145,7 +142,7 @@
 
             </div>
 
-            <!-- Indicador inferior de Scroll -->
+            <!-- Indicador Scroll -->
             <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 pointer-events-none">
                 <span class="text-[9px] tracking-[0.3em] uppercase text-white/70 font-light">Scroll</span>
                 <div class="w-[1px] h-5 bg-white/40"></div>
@@ -154,25 +151,21 @@
         </div>
     </section>
 
-    <!-- 3. SECCIÓN EDITORIAL: "MORE THAN FOUR WALLS" (CON FOTOGRAFÍA EDITORIAL) -->
+    <!-- 3. SECCIÓN EDITORIAL: "MORE THAN FOUR WALLS" -->
     <section id="editorial-section" class="relative z-20 bg-cream pt-28 sm:pt-36 md:pt-44 pb-16 sm:pb-24 px-6 md:px-14 flex flex-col items-center justify-center">
         
         <div class="max-w-4xl mx-auto text-center">
-            
-            <!-- Titular Grande Editorial en Verde Bosque Profundo -->
             <h2 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-normal leading-[1.08] text-forest tracking-tight">
                 More Than <br class="hidden sm:inline">
                 Four Walls
             </h2>
 
-            <!-- Párrafo Descriptivo Centrado -->
             <p class="mt-8 md:mt-12 font-sans font-light text-base sm:text-lg lg:text-[1.15rem] leading-[1.85] text-[#242A27] max-w-3xl mx-auto">
                 The celebrations, the quiet evenings, the moments that bring everyone together — life's best moments happen at home. At Aurelia, this is where moments like these find their place. Thoughtfully planned, beautifully finished and built to a standard that makes every day feel a little more special.
             </p>
-
         </div>
 
-        <!-- FOTOGRAFÍA EDITORIAL -->
+        <!-- Fotografía Editorial Responsive -->
         <div class="w-full max-w-6xl mx-auto mt-14 sm:mt-20 overflow-hidden rounded-2xl md:rounded-3xl shadow-2xl shadow-forest/10">
             <picture>
                 <source media="(max-width: 767px)" srcset="./frames/editorial_mobile.jpg">
@@ -183,9 +176,9 @@
 
     </section>
 
-    <!-- 4. ENCABEZADO DE LOS 3 PILARES (EN FONDO CREMA) -->
-    <section class="relative z-20 bg-cream pb-20 sm:pb-28 px-6 md:px-14 border-t border-forest/10">
-        <div class="max-w-5xl mx-auto pt-16 sm:pt-20">
+    <!-- 4. ENCABEZADO DE LOS 3 PILARES -->
+    <section class="relative z-20 bg-cream pb-16 sm:pb-24 px-6 md:px-14 border-t border-forest/10">
+        <div class="max-w-5xl mx-auto pt-14 sm:pt-18">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center">
                 
                 <div class="space-y-1.5">
@@ -207,58 +200,58 @@
         </div>
     </section>
 
-    <!-- 5. CARRUSEL HORIZONTAL PINNED: "LUXURY REDEFINED" + LIQUID GLASS BUTTON -->
-    <section id="horizontal-section" class="relative z-30 bg-forest-dark h-screen w-full overflow-hidden">
+    <!-- 5. CARRUSEL HORIZONTAL PINNED (Márgenes verdes ajustados y elegantes) -->
+    <section id="horizontal-section" class="relative z-30 bg-forest-dark h-screen w-full overflow-hidden flex items-center">
         
-        <!-- Pista de imágenes en movimiento horizontal -->
-        <div id="gallery-track" class="flex items-center gap-6 sm:gap-8 h-full w-max px-8 sm:px-16 will-change-transform">
+        <!-- Pista de imágenes (Llenan ~70vh con margen verde superior/inferior equilibrado) -->
+        <div id="gallery-track" class="flex items-center gap-5 sm:gap-7 h-[64vh] sm:h-[72vh] w-max px-6 sm:px-12 will-change-transform">
             
-            <div class="w-[72vw] sm:w-[50vw] md:w-[38vw] lg:w-[32vw] aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+            <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_1.jpg" alt="Aurelia Interior 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
-            <div class="w-[72vw] sm:w-[50vw] md:w-[38vw] lg:w-[32vw] aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+            <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_2.jpg" alt="Aurelia Interior 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
-            <div class="w-[72vw] sm:w-[50vw] md:w-[38vw] lg:w-[32vw] aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+            <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_3.jpg" alt="Aurelia Interior 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
-            <div class="w-[72vw] sm:w-[50vw] md:w-[38vw] lg:w-[32vw] aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+            <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_4.jpg" alt="Aurelia Interior 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
-            <div class="w-[72vw] sm:w-[50vw] md:w-[38vw] lg:w-[32vw] aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+            <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_5.jpg" alt="Aurelia Interior 5" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
-            <div class="w-[72vw] sm:w-[50vw] md:w-[38vw] lg:w-[32vw] aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+            <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_6.jpg" alt="Aurelia Interior 6" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
-            <div class="w-[72vw] sm:w-[50vw] md:w-[38vw] lg:w-[32vw] aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
+            <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
                 <img src="./frames/gallery_7.jpg" alt="Aurelia Interior 7" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div class="absolute inset-0 bg-black/25 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 
         </div>
 
-        <!-- OVERLAY CENTRAL FLOTANTE -->
+        <!-- Overlay Flotante Central -->
         <div class="absolute inset-0 z-30 flex flex-col items-center justify-center pointer-events-none px-4">
             
-            <h2 class="font-serif italic text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-normal text-white drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] tracking-tight text-center select-none">
+            <h2 class="font-serif italic text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-normal text-white drop-shadow-[0_15px_30px_rgba(0,0,0,0.85)] tracking-tight text-center select-none">
                 Luxury Redefined
             </h2>
 
-            <div class="mt-6 sm:mt-10 pointer-events-auto">
-                <a href="#holiday-homes" class="liquid-glass group w-28 h-28 sm:w-36 sm:h-36 rounded-full flex flex-col items-center justify-center text-center p-3 transition-transform duration-500 hover:scale-110 active:scale-95">
+            <div class="mt-5 sm:mt-8 pointer-events-auto">
+                <a href="#holiday-homes" class="liquid-glass group w-28 h-28 sm:w-34 sm:h-34 rounded-full flex flex-col items-center justify-center text-center p-3 transition-transform duration-500 hover:scale-105 active:scale-95">
                     <span class="text-white group-hover:text-gold text-[10px] sm:text-[11px] tracking-[0.25em] font-semibold uppercase transition-colors duration-300">
                         Learn<br>More
                     </span>
@@ -269,12 +262,11 @@
 
     </section>
 
-    <!-- 6. SECCIÓN "HOLIDAY HOMES | ESCAPE TO NATURE" (SECCIÓN EDITORIAL DE RETIRO) -->
+    <!-- 6. SECCIÓN "HOLIDAY HOMES | ESCAPE TO NATURE" -->
     <section id="holiday-homes" class="relative z-30 bg-cream text-forest py-28 sm:py-36 px-6 md:px-14">
         
         <div class="max-w-7xl mx-auto">
             
-            <!-- Encabezado de la Sección -->
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-24 gap-6 border-b border-forest/15 pb-10">
                 <div>
                     <span class="text-gold-dark text-[11px] tracking-[0.3em] uppercase font-semibold block mb-3">Curated Retreats</span>
@@ -288,7 +280,7 @@
             <!-- Grilla de Residencias de Retiro -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10">
                 
-                <!-- Tarjeta 1: Coastal Villa -->
+                <!-- Tarjeta 1 -->
                 <div class="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl shadow-forest/5 border border-forest/10 hover:shadow-2xl transition-all duration-500">
                     <div class="relative aspect-[16/10] overflow-hidden">
                         <img src="./frames/retreat_1.jpg" alt="Coastal Sanctuary" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -313,7 +305,7 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta 2: Hilltop Sanctuary -->
+                <!-- Tarjeta 2 -->
                 <div class="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl shadow-forest/5 border border-forest/10 hover:shadow-2xl transition-all duration-500">
                     <div class="relative aspect-[16/10] overflow-hidden">
                         <img src="./frames/retreat_2.jpg" alt="Hilltop Sanctuary" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -338,7 +330,7 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta 3: Lake Oasis -->
+                <!-- Tarjeta 3 -->
                 <div class="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-xl shadow-forest/5 border border-forest/10 hover:shadow-2xl transition-all duration-500">
                     <div class="relative aspect-[16/10] overflow-hidden">
                         <img src="./frames/retreat_3.jpg" alt="Lakeside Haven" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
@@ -369,17 +361,18 @@
 
     </section>
 
-    <!-- 7. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
+    <!-- 7. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS (OPTIMIZADO EN AMBAS DIRECCIONES) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 
     <script>
-        // 1. INICIALIZAR LENIS SMOOTH SCROLL
+        // 1. LENIS SMOOTH SCROLL
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: 1.15,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true
+            smoothWheel: true,
+            wheelMultiplier: 0.9
         });
 
         function raf(time) {
@@ -394,7 +387,7 @@
         });
         gsap.ticker.lagSmoothing(0);
 
-        // 2. DETECCIÓN RESPONSIVE & CANVAS PC
+        // 2. CANVAS HERO (DESKTOP)
         const isMobile = window.innerWidth < 768;
         const frameCount = 130;
         const currentFrame = index => `./frames/frame_${String(index).padStart(3, '0')}.jpg`;
@@ -456,13 +449,14 @@
             window.addEventListener("resize", setCanvasSize);
         }
 
-        // 3. ANIMACIONES GSAP DEL HERO (TIMELINE)
+        // 3. ANIMACIONES GSAP DEL HERO (TIMELINE SUAVE EN AMBAS DIRECCIONES)
         const tlHero = gsap.timeline({
             scrollTrigger: {
                 trigger: "#hero-section",
                 start: "top top",
                 end: "bottom bottom",
-                scrub: 0.6,
+                scrub: 0.8,
+                anticipatePin: 1
             }
         });
 
@@ -480,11 +474,11 @@
             const mob2 = document.getElementById("mob-img-2");
             const mob3 = document.getElementById("mob-img-3");
 
-            tlHero.to(mob1, { opacity: 0, ease: "power1.inOut", duration: 0.2 }, 0.25);
-            tlHero.to(mob2, { opacity: 1, ease: "power1.inOut", duration: 0.2 }, 0.25);
+            tlHero.to(mob1, { opacity: 0, ease: "none", duration: 0.2 }, 0.25);
+            tlHero.to(mob2, { opacity: 1, ease: "none", duration: 0.2 }, 0.25);
 
-            tlHero.to(mob2, { opacity: 0, ease: "power1.inOut", duration: 0.2 }, 0.65);
-            tlHero.to(mob3, { opacity: 1, ease: "power1.inOut", duration: 0.2 }, 0.65);
+            tlHero.to(mob2, { opacity: 0, ease: "none", duration: 0.2 }, 0.65);
+            tlHero.to(mob3, { opacity: 1, ease: "none", duration: 0.2 }, 0.65);
         }
 
         // Titulares Hero
@@ -507,7 +501,7 @@
             }
         });
 
-        // 5. CARRUSEL HORIZONTAL PINNED CON GSAP SCROLLTRIGGER
+        // 5. CARRUSEL HORIZONTAL PINNED (REVERSIBLE Y FLUIDO)
         const track = document.getElementById("gallery-track");
 
         function getScrollAmount() {
@@ -523,9 +517,15 @@
                 start: "top top",
                 end: () => `+=${track.scrollWidth - window.innerWidth}`,
                 pin: true,
-                scrub: 1,
+                scrub: 0.8,
+                anticipatePin: 1,
                 invalidateOnRefresh: true,
             }
+        });
+
+        // Recalcular ScrollTrigger al cargar todas las imágenes
+        window.addEventListener("load", () => {
+            ScrollTrigger.refresh();
         });
     </script>
 </body>
