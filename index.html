@@ -578,9 +578,7 @@
 
     </section>
 
-    <!-- ========================================================================= -->
-    <!-- 9. CARRUSEL HORIZONTAL INTERIORS: PARALLAX SUAVE Y MARGEN REFINADO        -->
-    <!-- ========================================================================= -->
+    <!-- 9. CARRUSEL HORIZONTAL INTERIORS: PARALLAX SUAVE Y MARGEN REFINADO -->
     <section id="interiors-carousel" class="relative z-30 bg-cream py-10 sm:py-14 w-full overflow-hidden flex flex-col items-center justify-center border-t border-forest/10">
         
         <!-- Pista de fotos de Interiores (Vertical 3:4) -->
@@ -646,7 +644,105 @@
 
     </section>
 
-    <!-- 10. FOOTER EDITORIAL LUXURY -->
+    <!-- ========================================================================= -->
+    <!-- 10. NUEVA SECCIÓN DE CONTACTO: "GET IN TOUCH | READY TO FIND..."          -->
+    <!-- ========================================================================= -->
+    <section id="inquire" class="relative z-30 bg-cream text-forest py-24 sm:py-32 px-6 md:px-14 border-t border-forest/15">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <!-- Kicker Embellished Superior -->
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <span class="w-8 h-[1px] bg-forest/30"></span>
+                <span class="font-serif italic text-forest/80 text-lg md:text-xl">Get in Touch</span>
+                <span class="w-8 h-[1px] bg-forest/30"></span>
+            </div>
+
+            <!-- Titular Editorial Principal -->
+            <h2 class="font-serif text-4xl sm:text-6xl md:text-[4.3rem] font-normal leading-[1.08] text-forest tracking-tight max-w-2xl mx-auto">
+                Ready to find <br>
+                your perfect home?
+            </h2>
+
+            <!-- Subtítulo / Instrucción -->
+            <p class="font-sans font-light text-xs sm:text-sm md:text-base text-[#242A27]/80 mt-5 sm:mt-6 max-w-lg mx-auto leading-relaxed">
+                Submit your details and one of our representatives will get back to you as soon as possible.
+            </p>
+
+            <!-- Formulario Minimalista Luxury -->
+            <form id="contact-form" onsubmit="event.preventDefault(); alert('Thank you. An Aurelia Private Advisor will contact you shortly.');" class="mt-12 sm:mt-16 text-left max-w-3xl mx-auto space-y-8">
+                
+                <!-- Fila 1: Nombre & Teléfono -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">
+                    <div class="relative">
+                        <input type="text" required placeholder="Your name" class="w-full bg-transparent border-b border-forest/25 focus:border-forest text-forest placeholder:text-forest/50 py-3 text-sm md:text-[15px] font-light outline-none transition-colors">
+                    </div>
+
+                    <div class="relative">
+                        <input type="tel" required placeholder="+91 00000 00000" class="w-full bg-transparent border-b border-forest/25 focus:border-forest text-forest placeholder:text-forest/50 py-3 text-sm md:text-[15px] font-light outline-none transition-colors">
+                    </div>
+                </div>
+
+                <!-- Fila 2: Correo & Enquiring As -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-10">
+                    <div class="relative">
+                        <input type="email" required placeholder="Email address" class="w-full bg-transparent border-b border-forest/25 focus:border-forest text-forest placeholder:text-forest/50 py-3 text-sm md:text-[15px] font-light outline-none transition-colors">
+                    </div>
+
+                    <div class="relative">
+                        <select class="w-full bg-transparent border-b border-forest/25 focus:border-forest text-forest py-3 text-sm md:text-[15px] font-light outline-none transition-colors cursor-pointer appearance-none">
+                            <option value="" disabled selected class="text-forest/50 bg-cream">Enquiring as...</option>
+                            <option value="buyer" class="bg-cream text-forest">Individual Buyer</option>
+                            <option value="investor" class="bg-cream text-forest">Private Investor / Family Office</option>
+                            <option value="agent" class="bg-cream text-forest">Luxury Broker / Agent</option>
+                            <option value="other" class="bg-cream text-forest">Architect / Designer</option>
+                        </select>
+                        <div class="absolute right-2 top-4 pointer-events-none text-forest/60">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fila 3: Interested In -->
+                <div class="relative">
+                    <select class="w-full bg-transparent border-b border-forest/25 focus:border-forest text-forest py-3 text-sm md:text-[15px] font-light outline-none transition-colors cursor-pointer appearance-none">
+                        <option value="" disabled selected class="text-forest/50 bg-cream">Interested in...</option>
+                        <option value="dlf-garden" class="bg-cream text-forest">DLF Garden City Residences (Gurugram)</option>
+                        <option value="alameda" class="bg-cream text-forest">Alameda Mansions (Sector 73)</option>
+                        <option value="holiday-goa" class="bg-cream text-forest">The Palm Villa (Goa Coastal Haven)</option>
+                        <option value="holiday-ridge" class="bg-cream text-forest">The Ridge Chalet (Lansdowne Retreat)</option>
+                        <option value="holiday-lake" class="bg-cream text-forest">The Glass Pavilion (Udaipur Lakefront)</option>
+                        <option value="custom-interior" class="bg-cream text-forest">Custom Bespoke Interior Curation</option>
+                    </select>
+                    <div class="absolute right-2 top-4 pointer-events-none text-forest/60">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Checkbox de Consentimiento / Privacidad -->
+                <div class="pt-4 flex items-start gap-3">
+                    <input type="checkbox" id="privacy-check" required class="mt-1 h-4 w-4 rounded border-forest/30 text-forest accent-forest cursor-pointer">
+                    <label for="privacy-check" class="text-[11px] sm:text-xs text-[#242A27]/70 font-light leading-relaxed cursor-pointer select-none">
+                        By proceeding, you acknowledge and agree to our Privacy Policy. You also consent to receive updates, notifications, and promotional communications via Email, SMS, and WhatsApp.
+                    </label>
+                </div>
+
+                <!-- Botón Centrado "REQUEST A CALLBACK" -->
+                <div class="pt-6 sm:pt-8 flex justify-center">
+                    <button type="submit" class="inline-flex items-center justify-center px-10 py-4 rounded-full bg-forest text-white hover:bg-forest-dark hover:text-gold transition-all duration-300 text-[11px] tracking-[0.22em] font-semibold uppercase shadow-xl shadow-forest/20 hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98]">
+                        Request A Callback
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+    <!-- 11. FOOTER EDITORIAL LUXURY -->
     <footer class="relative z-30 bg-[#041610] text-cream py-20 px-6 md:px-14 border-t border-gold/20">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             <div>
@@ -679,7 +775,7 @@
         </div>
     </footer>
 
-    <!-- 11. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
+    <!-- 12. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
