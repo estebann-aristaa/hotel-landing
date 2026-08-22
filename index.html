@@ -56,7 +56,7 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Efecto Liquid Glass Refinado */
+        /* Efecto Liquid Glass Real */
         .liquid-glass {
             background: radial-gradient(120% 120% at 50% 10%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.03) 100%);
             backdrop-filter: blur(18px);
@@ -200,10 +200,10 @@
         </div>
     </section>
 
-    <!-- 5. CARRUSEL HORIZONTAL PINNED (Márgenes verdes ajustados y elegantes) -->
+    <!-- 5. CARRUSEL HORIZONTAL PINNED (CON DESLIZAMIENTO ANTICIPADO AL ACERCARSE) -->
     <section id="horizontal-section" class="relative z-30 bg-forest-dark h-screen w-full overflow-hidden flex items-center">
         
-        <!-- Pista de imágenes (Llenan ~70vh con margen verde superior/inferior equilibrado) -->
+        <!-- Pista de imágenes -->
         <div id="gallery-track" class="flex items-center gap-5 sm:gap-7 h-[64vh] sm:h-[72vh] w-max px-6 sm:px-12 will-change-transform">
             
             <div class="h-full aspect-[4/3] flex-shrink-0 rounded-xl sm:rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative group">
@@ -361,7 +361,7 @@
 
     </section>
 
-    <!-- 7. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS (OPTIMIZADO EN AMBAS DIRECCIONES) -->
+    <!-- 7. SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
@@ -449,7 +449,7 @@
             window.addEventListener("resize", setCanvasSize);
         }
 
-        // 3. ANIMACIONES GSAP DEL HERO (TIMELINE SUAVE EN AMBAS DIRECCIONES)
+        // 3. ANIMACIONES GSAP DEL HERO
         const tlHero = gsap.timeline({
             scrollTrigger: {
                 trigger: "#hero-section",
@@ -481,13 +481,12 @@
             tlHero.to(mob3, { opacity: 1, ease: "none", duration: 0.2 }, 0.65);
         }
 
-        // Titulares Hero
         tlHero.to("#text-1", { opacity: 0, y: -25, ease: "power1.out", duration: 0.12 }, 0.15);
         tlHero.fromTo("#text-2", { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.12, ease: "power1.out" }, 0.38);
         tlHero.to("#text-2", { opacity: 0, y: -25, duration: 0.12, ease: "power1.in" }, 0.58);
         tlHero.fromTo("#text-3", { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 0.12, ease: "power1.out" }, 0.78);
 
-        // 4. CAMBIO DE COLOR DEL HEADER AL SCROLLEAR
+        // 4. CAMBIO DE COLOR DEL HEADER
         ScrollTrigger.create({
             trigger: "#editorial-section",
             start: "top 80px",
@@ -501,7 +500,7 @@
             }
         });
 
-        // 5. CARRUSEL HORIZONTAL PINNED (REVERSIBLE Y FLUIDO)
+        // 5. CARRUSEL HORIZONTAL CON DESLIZAMIENTO ANTICIPADO (EARLY ENTRY + PIN)
         const track = document.getElementById("gallery-track");
 
         function getScrollAmount() {
@@ -509,6 +508,23 @@
             return -(trackWidth - window.innerWidth);
         }
 
+        // FASE 1: Empieza a moverse tan pronto como el carrusel asoma por abajo (top bottom -> top top)
+        gsap.fromTo(track, 
+            { x: () => window.innerWidth * 0.22 }, // Inicia ligeramente desplazado a la derecha
+            {
+                x: 0,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#horizontal-section",
+                    start: "top bottom",
+                    end: "top top",
+                    scrub: 0.6,
+                    immediateRender: false
+                }
+            }
+        );
+
+        // FASE 2: Se ancla a la pantalla y recorre el resto de las 7 fotos suavemente
         gsap.to(track, {
             x: getScrollAmount,
             ease: "none",
@@ -523,7 +539,6 @@
             }
         });
 
-        // Recalcular ScrollTrigger al cargar todas las imágenes
         window.addEventListener("load", () => {
             ScrollTrigger.refresh();
         });
