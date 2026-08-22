@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURELIA | Luxury Residences</title>
 
+    <!-- Reset Inmediato de Scroll en Head (Evita cualquier salto visual previo) -->
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -71,6 +79,9 @@
     </style>
 </head>
 <body class="bg-black text-white font-sans overflow-x-hidden selection:bg-gold selection:text-black antialiased">
+
+    <!-- VELO INICIAL DE TRANSICIÓN SUAVE (Elimina destellos al refrescar) -->
+    <div id="aurelia-curtain" class="fixed inset-0 bg-black z-[9999] pointer-events-none transition-opacity duration-700 ease-out"></div>
 
     <!-- 1. NAVBAR DINÁMICO -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 px-6 sm:px-8 md:px-14 py-5 sm:py-6 flex items-center justify-between transition-all duration-500 pointer-events-auto">
@@ -674,15 +685,8 @@
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
 
     <script>
-        // 0. RESET DE SCROLL OBLIGATORIO AL REINICIAR (ARRANCA SIEMPRE DESDE 0)
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
-        }
+        // 0. RESET DE SCROLL INMEDIATO
         window.scrollTo(0, 0);
-
-        window.addEventListener('beforeunload', () => {
-            window.scrollTo(0, 0);
-        });
 
         // 1. LENIS SMOOTH SCROLL
         const lenis = new Lenis({
@@ -1011,11 +1015,22 @@
             }
         );
 
-        // Sincronización completa al cargar la ventana
+        // DESVANECIMIENTO DEL VELO INICIAL Y SINCRONIZACIÓN PERFECTA
         window.addEventListener("load", () => {
             window.scrollTo(0, 0);
             lenis.scrollTo(0, { immediate: true });
             ScrollTrigger.refresh();
+
+            // Disolver velo con suavidad
+            const curtain = document.getElementById("aurelia-curtain");
+            if (curtain) {
+                setTimeout(() => {
+                    curtain.style.opacity = "0";
+                    setTimeout(() => {
+                        curtain.remove();
+                    }, 700);
+                }, 80);
+            }
         });
     </script>
 </body>
