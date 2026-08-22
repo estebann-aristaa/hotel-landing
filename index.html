@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIA | Luxury Residences</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Playfair Display + Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Configuración Custom -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            DEFAULT: '#E2A838',
+                            light: '#F3C568',
+                            dark: '#BD851D',
+                        },
+                        cream: '#F4EFE6',
+                        forest: '#0F3B2C',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans overflow-x-hidden selection:bg-gold selection:text-black">
+
+    <!-- 1. NAVBAR DINÁMICO (Se adapta al scroll) -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-40 px-8 md:px-14 py-6 flex items-center justify-between transition-colors duration-500 pointer-events-auto">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+            <svg class="w-7 h-7 text-gold fill-current group-hover:scale-105 transition-transform duration-300" viewBox="0 0 24 24">
+                <path d="M12 2L2 20h20L12 2zm0 4.2L17.8 17.5H6.2L12 6.2z"/>
+                <path d="M12 9.2L8.5 15.5h7L12 9.2z"/>
+            </svg>
+            <span class="text-lg md:text-xl tracking-[0.25em] text-gold uppercase font-semibold">AURELIA</span>
+        </a>
+
+        <!-- Menú Desktop -->
+        <nav class="hidden xl:flex items-center gap-9 text-[13px] tracking-[0.05em] text-white font-medium">
+            <a href="#" class="hover:text-gold transition-colors duration-300">Home</a>
+            <a href="#" class="hover:text-gold transition-colors duration-300">Corporate ▾</a>
+            <a href="#" class="hover:text-gold transition-colors duration-300">Projects ▾</a>
+            <a href="#" class="hover:text-gold transition-colors duration-300">Upcoming Projects ▾</a>
+            <a href="#" class="hover:text-gold transition-colors duration-300">Careers</a>
+            <a href="#" class="hover:text-gold transition-colors duration-300">Media ▾</a>
+            <a href="#" class="hover:text-gold transition-colors duration-300">Contact</a>
+        </nav>
+
+        <!-- Botón Outline Ovalado -->
+        <a href="#inquire" class="px-7 py-2.5 rounded-full border border-white/50 text-white hover:border-gold hover:bg-gold hover:text-black transition-all duration-300 text-[11px] tracking-[0.18em] font-semibold uppercase backdrop-blur-sm">
+            Enquire Now
+        </a>
+    </header>
+
+    <!-- 2. HERO INTERACTIVO CON CANVAS (130 FRAMES) -->
+    <section id="hero-section" class="relative w-full h-[400vh] bg-black">
+        
+        <div class="sticky top-0 left-0 w-full h-screen overflow-hidden">
+            
+            <!-- Canvas -->
+            <canvas id="hero-canvas" class="absolute inset-0 w-full h-full object-cover"></canvas>
+
+            <!-- Velo sutil inferior para contraste -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none"></div>
+
+            <!-- CONTENEDOR DE TITULARES -->
+            <div class="relative z-10 w-full h-full px-8 md:px-14 flex flex-col justify-end pb-16 md:pb-20">
+                
+                <!-- Titular 1 -->
+                <div id="text-1" class="max-w-2xl">
+                    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
+                        Crafting Spaces That Feel Like Home
+                    </h1>
+                </div>
+
+                <!-- Titular 2 -->
+                <div id="text-2" class="max-w-2xl absolute bottom-16 md:bottom-20 left-8 md:left-14 opacity-0 pointer-events-none">
+                    <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
+                        Designed With Quality That Lasts
+                    </h2>
+                </div>
+
+                <!-- Titular 3 -->
+                <div id="text-3" class="max-w-2xl absolute bottom-16 md:bottom-20 left-8 md:left-14 opacity-0 pointer-events-none">
+                    <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] font-normal leading-[0.98] text-white tracking-normal drop-shadow-md">
+                        Creating Value For Years To Come
+                    </h2>
+                </div>
+
+            </div>
+
+            <!-- Indicador inferior de Scroll -->
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 pointer-events-none">
+                <span class="text-[9px] tracking-[0.3em] uppercase text-white/70 font-light">Scroll</span>
+                <div class="w-[1px] h-5 bg-white/40"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. SECCIÓN EDITORIAL: "MORE THAN FOUR WALLS" (CLONADA EXACTA) -->
+    <section id="editorial-section" class="relative z-20 bg-cream py-32 md:py-44 px-6 md:px-14 flex items-center justify-center">
+        
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <!-- Titular Grande Editorial en Verde Bosque Profundo -->
+            <h2 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-normal leading-[1.08] text-forest tracking-tight">
+                More Than <br>
+                Four Walls
+            </h2>
+
+            <!-- Párrafo Descriptivo Centrado -->
+            <p class="mt-10 md:mt-14 font-sans font-light text-base md:text-lg lg:text-[1.15rem] leading-[1.8] text-[#242A27] max-w-3xl mx-auto">
+                The celebrations, the quiet evenings, the moments that bring everyone together — life's best moments happen at home. At Aurelia, this is where moments like these find their place. Thoughtfully planned, beautifully finished and built to a standard that makes every day feel a little more special.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- SCRIPTS: GSAP + SCROLLTRIGGER + LENIS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <script>
+        // -------------------------------------------------------------
+        // CONFIGURACIÓN DE TUS FRAMES
+        // -------------------------------------------------------------
+        const frameCount = 130;
+        const currentFrame = index => `./frames/frame_${String(index).padStart(3, '0')}.jpg`;
+
+        // 1. INICIALIZAR LENIS
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        // 2. CANVAS RENDERING
+        const canvas = document.getElementById("hero-canvas");
+        const context = canvas.getContext("2d");
+
+        function setCanvasSize() {
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            render();
+        }
+
+        const images = [];
+        const villaAnim = { frame: 1 };
+
+        // Primer frame de inmediato
+        const firstImg = new Image();
+        firstImg.src = currentFrame(1);
+        firstImg.onload = () => render();
+
+        // Carga progresiva en RAM
+        for (let i = 1; i <= frameCount; i++) {
+            const img = new Image();
+            img.src = currentFrame(i);
+            images.push(img);
+        }
+
+        function render() {
+            let targetIndex = Math.min(frameCount, Math.max(1, Math.round(villaAnim.frame))) - 1;
+            let img = images[targetIndex];
+
+            if (!img || !img.complete || img.naturalWidth === 0) {
+                for (let k = targetIndex; k >= 0; k--) {
+                    if (images[k] && images[k].complete && images[k].naturalWidth !== 0) {
+                        img = images[k];
+                        break;
+                    }
+                }
+            }
+
+            if (!img || !img.complete || img.naturalWidth === 0) return;
+
+            const hRatio = canvas.width / img.naturalWidth;
+            const vRatio = canvas.height / img.naturalHeight;
+            const ratio = Math.max(hRatio, vRatio);
+
+            const centerShiftX = (canvas.width - img.naturalWidth * ratio) / 2;
+            const centerShiftY = (canvas.height - img.height * ratio) / 2;
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.drawImage(
+                img,
+                0, 0, img.naturalWidth, img.naturalHeight,
+                centerShiftX, centerShiftY, img.width * ratio, img.height * ratio
+            );
+        }
+
+        // 3. ANIMACIONES GSAP
+        setCanvasSize();
+        window.addEventListener("resize", setCanvasSize);
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#hero-section",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.6,
+            }
+        });
+
+        tl.to(villaAnim, {
+            frame: frameCount,
+            snap: "frame",
+            ease: "none",
+            onUpdate: render
+        }, 0);
+
+        tl.to("#text-1", {
+            opacity: 0,
+            y: -25,
+            ease: "power1.out",
+            duration: 0.12
+        }, 0.15);
+
+        tl.fromTo("#text-2", 
+            { opacity: 0, y: 25 }, 
+            { opacity: 1, y: 0, duration: 0.12, ease: "power1.out" }, 
+        0.38);
+        tl.to("#text-2", {
+            opacity: 0,
+            y: -25,
+            duration: 0.12,
+            ease: "power1.in"
+        }, 0.58);
+
+        tl.fromTo("#text-3", 
+            { opacity: 0, y: 25 }, 
+            { opacity: 1, y: 0, duration: 0.12, ease: "power1.out" }, 
+        0.78);
+
+        // Transición del Header al entrar a la sección Crema
+        ScrollTrigger.create({
+            trigger: "#editorial-section",
+            start: "top 80px",
+            onEnter: () => {
+                document.getElementById("main-header").classList.add("bg-[#0E231B]/95", "backdrop-blur-md", "shadow-lg");
+            },
+            onLeaveBack: () => {
+                document.getElementById("main-header").classList.remove("bg-[#0E231B]/95", "backdrop-blur-md", "shadow-lg");
+            }
+        });
+    </script>
+</body>
+</html>
