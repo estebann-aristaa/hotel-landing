@@ -45,6 +45,7 @@
                             DEFAULT: '#0F3B2C',
                             dark: '#08231A',
                             deep: '#041610',
+                            footer: '#062419'
                         }
                     }
                 }
@@ -644,9 +645,7 @@
 
     </section>
 
-    <!-- ========================================================================= -->
-    <!-- 10. NUEVA SECCIÓN DE CONTACTO: "GET IN TOUCH | READY TO FIND..."          -->
-    <!-- ========================================================================= -->
+    <!-- 10. SECCIÓN DE CONTACTO: "GET IN TOUCH | READY TO FIND..." -->
     <section id="inquire" class="relative z-30 bg-cream text-forest py-24 sm:py-32 px-6 md:px-14 border-t border-forest/15">
         <div class="max-w-4xl mx-auto text-center">
             
@@ -742,36 +741,130 @@
         </div>
     </section>
 
-    <!-- 11. FOOTER EDITORIAL LUXURY -->
-    <footer class="relative z-30 bg-[#041610] text-cream py-20 px-6 md:px-14 border-t border-gold/20">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-            <div>
-                <span class="font-serif tracking-[0.25em] text-2xl font-semibold uppercase text-gold">AURELIA</span>
-                <p class="text-xs tracking-[0.3em] uppercase text-cream/60 mt-1">Luxury Residences</p>
-                <p class="text-xs text-cream/40 mt-4 max-w-sm">
-                    Crafting architectural excellence and generational heritage.
-                </p>
+    <!-- ========================================================================= -->
+    <!-- 11. FOOTER EDITORIAL INSPIRADO EN EMARAT REALTY (EXACT DESIGN)             -->
+    <!-- ========================================================================= -->
+    <footer class="relative z-30 bg-[#062419] text-white pt-20 sm:pt-24 pb-12 px-6 sm:px-10 md:px-16 border-t border-forest/40">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Grilla Principal del Footer (Branding + 4 Columnas) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-14 items-start">
+                
+                <!-- Columna Izquierda: Branding, Manifiesto y Dirección -->
+                <div class="md:col-span-12 lg:col-span-4 space-y-6">
+                    <!-- Logo Aurelia Luxury -->
+                    <a href="#" class="inline-flex flex-col items-start group">
+                        <svg class="w-10 h-10 text-gold fill-current mb-3 transform group-hover:scale-105 transition-transform duration-300" viewBox="0 0 24 24">
+                            <path d="M12 2L2 20h20L12 2zm0 4.2L17.8 17.5H6.2L12 6.2z"/>
+                            <path d="M12 9.2L8.5 15.5h7L12 9.2z"/>
+                        </svg>
+                        <span class="font-serif tracking-[0.28em] text-2xl font-bold uppercase text-gold">AURELIA</span>
+                    </a>
+
+                    <!-- Manifiesto -->
+                    <p class="font-sans font-light text-xs sm:text-sm text-cream/80 leading-relaxed max-w-sm">
+                        Redefining the standard of luxury living and building transformative real estate in Gurugram, Haryana.
+                    </p>
+
+                    <!-- Dirección Física Corporativa -->
+                    <div class="pt-2 text-[11px] sm:text-xs text-cream/50 leading-relaxed font-light">
+                        <p>Aurelia Residences, 2nd Floor, Sector-15,</p>
+                        <p>Civil Lines, Gurugram (Haryana) 122001</p>
+                    </div>
+                </div>
+
+                <!-- 4 Columnas de Navegación a la Derecha -->
+                <div class="md:col-span-12 lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-6 text-left">
+                    
+                    <!-- Columna 1: CORPORATE -->
+                    <div class="space-y-4">
+                        <h4 class="text-[11px] tracking-[0.22em] font-semibold text-white uppercase">Corporate</h4>
+                        <ul class="space-y-2.5 text-xs font-light text-cream/70">
+                            <li><a href="#editorial-section" class="hover:text-gold transition-colors duration-200">About Us</a></li>
+                            <li><a href="#crafted-section" class="hover:text-gold transition-colors duration-200">Director's Desk</a></li>
+                            <li><a href="#inquire" class="hover:text-gold transition-colors duration-200">Careers</a></li>
+                            <li><a href="#" class="hover:text-gold transition-colors duration-200">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-gold transition-colors duration-200">Terms & Conditions</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna 2: PROJECTS -->
+                    <div class="space-y-4">
+                        <h4 class="text-[11px] tracking-[0.22em] font-semibold text-white uppercase">Projects</h4>
+                        <ul class="space-y-2.5 text-xs font-light text-cream/70">
+                            <li><a href="#residences-section" class="hover:text-gold transition-colors duration-200">C2 at DLF Garden City</a></li>
+                            <li><a href="#residences-section" class="hover:text-gold transition-colors duration-200">C5 at DLF Garden City</a></li>
+                            <li><a href="#residences-section" class="hover:text-gold transition-colors duration-200">E11 at DLF Garden City</a></li>
+                            <li><a href="#residences-section" class="hover:text-gold transition-colors duration-200">EA 04 at Alameda</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna 3: EXPLORE -->
+                    <div class="space-y-4">
+                        <h4 class="text-[11px] tracking-[0.22em] font-semibold text-white uppercase">Explore</h4>
+                        <ul class="space-y-2.5 text-xs font-light text-cream/70">
+                            <li><a href="#horizontal-section" class="hover:text-gold transition-colors duration-200">Projects</a></li>
+                            <li><a href="#holiday-homes" class="hover:text-gold transition-colors duration-200">Upcoming Projects</a></li>
+                            <li><a href="#interiors-carousel" class="hover:text-gold transition-colors duration-200">News</a></li>
+                            <li><a href="#inquire" class="hover:text-gold transition-colors duration-200">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna 4: GET IN TOUCH -->
+                    <div class="space-y-4">
+                        <h4 class="text-[11px] tracking-[0.22em] font-semibold text-white uppercase">Get In Touch</h4>
+                        <div class="space-y-2 text-xs font-light text-cream/70">
+                            <p><a href="tel:+918450984509" class="hover:text-gold transition-colors duration-200 font-normal text-cream/90">+91 84509 84509</a></p>
+                            <p><a href="mailto:info@aureliaresidences.com" class="hover:text-gold transition-colors duration-200">info@aurelia.com</a></p>
+                            <p class="text-[11px] text-cream/50 pt-1">Mon – Fri · 9am – 6pm</p>
+                        </div>
+
+                        <!-- Redes Sociales Vectoriales -->
+                        <div class="flex items-center gap-3 pt-2 text-cream/80">
+                            <!-- LinkedIn -->
+                            <a href="#" aria-label="LinkedIn" class="hover:text-gold transition-colors duration-200">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.96 0-1.74.78-1.74 1.74s.78 1.74 1.74 1.74 1.74-.78 1.74-1.74-.78-1.74-1.74-1.74z"/>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#" aria-label="Instagram" class="hover:text-gold transition-colors duration-200">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <!-- Facebook -->
+                            <a href="#" aria-label="Facebook" class="hover:text-gold transition-colors duration-200">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.667 5H18V0h-3.889C10.5 0 9 1.583 9 4.667V8z"/>
+                                </svg>
+                            </a>
+                            <!-- X (Twitter) -->
+                            <a href="#" aria-label="X" class="hover:text-gold transition-colors duration-200">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                            </a>
+                            <!-- YouTube -->
+                            <a href="#" aria-label="YouTube" class="hover:text-gold transition-colors duration-200">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-8 sm:gap-14 text-xs tracking-widest uppercase font-light text-cream/70">
-                <div class="space-y-3 flex flex-col">
-                    <span class="text-gold font-semibold mb-1">Architecture</span>
-                    <a href="#hero-section" class="hover:text-gold transition-colors">Overview</a>
-                    <a href="#editorial-section" class="hover:text-gold transition-colors">Philosophy</a>
-                    <a href="#horizontal-section" class="hover:text-gold transition-colors">Portfolio</a>
-                </div>
-                <div class="space-y-3 flex flex-col">
-                    <span class="text-gold font-semibold mb-1">Inquiries</span>
-                    <a href="#residences-section" class="hover:text-gold transition-colors">Residences</a>
-                    <a href="#holiday-homes" class="hover:text-gold transition-colors">Retreats</a>
-                    <a href="#inquire" class="hover:text-gold transition-colors">Private Viewing</a>
-                </div>
+            <!-- Tira Inferior / Copyright HRERA -->
+            <div class="mt-16 pt-8 border-t border-cream/10 flex flex-col sm:flex-row justify-between items-center text-[11px] text-cream/50 font-light gap-4 text-center sm:text-left">
+                <p>&copy; 2026 Aurelia Luxury Residences. All rights reserved.</p>
+                <p class="font-normal text-cream/70">HRERA registered · Gurugram, Haryana</p>
+                <p>Designed with Architectural Excellence</p>
             </div>
-        </div>
 
-        <div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-cream/10 flex flex-col sm:flex-row justify-between items-center text-[10px] tracking-widest text-cream/40 uppercase gap-4">
-            <p>&copy; 2026 AURELIA Luxury Residences. All Rights Reserved.</p>
-            <p>Inspired by Emarat Realty Architecture</p>
         </div>
     </footer>
 
